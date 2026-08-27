@@ -227,24 +227,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 4000);
     }
 
-    // 8. Contact Support Form Submission → WhatsApp
+    // 8. Contact Support Form Submission → Direct WhatsApp Redirect
     const WHATSAPP_NUMBER = '918129911207';
     const supportForm = document.getElementById('support-form');
 
     if (supportForm) {
-        supportForm.addEventListener('submit', (event) => {
+        supportForm.addEventListener('submit', function (event) {
             event.preventDefault();
 
-            const name = document.getElementById('name')?.value.trim() || 'N/A';
-            const phone = document.getElementById('phone')?.value.trim() || 'N/A';
-            const email = document.getElementById('email')?.value.trim() || 'N/A';
+            const name = document.getElementById('name')?.value.trim() || 'Not specified';
+            const phone = document.getElementById('phone')?.value.trim() || 'Not specified';
+            const email = document.getElementById('email')?.value.trim() || 'Not specified';
 
             const serviceSelect = document.getElementById('service-type');
             const service = serviceSelect && serviceSelect.selectedIndex >= 0
                 ? serviceSelect.options[serviceSelect.selectedIndex].text
-                : 'Not specified';
+                : 'General Inquiry';
 
-            const message = document.getElementById('message')?.value.trim() || 'No message provided';
+            const message = document.getElementById('message')?.value.trim() || 'Support requested';
 
             const whatsappMessage =
 `*NEW SUPPORT REQUEST - MK TECHFORGE*
@@ -260,14 +260,8 @@ ${message}`;
             const cleanPhone = WHATSAPP_NUMBER.replace(/\D/g, '');
             const whatsappURL = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(whatsappMessage)}`;
 
-            // Provide visual feedback
-            showToast("Redirecting to WhatsApp support...");
-
-            // Open WhatsApp in a new tab / window (fallback to location.href if blocked)
-            const newWindow = window.open(whatsappURL, '_blank');
-            if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-                window.location.href = whatsappURL;
-            }
+            // Directly redirect browser to WhatsApp
+            window.location.href = whatsappURL;
         });
     }
 });
