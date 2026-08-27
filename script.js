@@ -227,86 +227,47 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 4000);
     }
 
-    // 8. Contact Support Form Submission
+    // 8. Contact Support Form Submission → WhatsApp
+    const WHATSAPP_NUMBER = '918129911207';
     const supportForm = document.getElementById('support-form');
+
     if (supportForm) {
-        supportForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const submitBtn = supportForm.querySelector('button[type="submit"]');
+        supportForm.addEventListener('submit', (event) => {
+            event.preventDefault();
 
-            if (submitBtn) {
-                submitBtn.classList.add('loading');
-                submitBtn.disabled = true;
-            }
+            const name = document.getElementById('name')?.value.trim() || 'N/A';
+            const phone = document.getElementById('phone')?.value.trim() || 'N/A';
+            const email = document.getElementById('email')?.value.trim() || 'N/A';
 
-            setTimeout(() => {
-                if (submitBtn) {
-                    submitBtn.classList.remove('loading');
-                    submitBtn.disabled = false;
-                }
-                supportForm.reset();
-                showToast("✓ Thank you! Support ticket #TK-8492 submitted. An engineer will contact you within 15 mins.");
-            }, 900);
-        });
-    }
-});
-// ============================================================
-// CONTACT FORM → WHATSAPP
-// ============================================================
+            const serviceSelect = document.getElementById('service-type');
+            const service = serviceSelect && serviceSelect.selectedIndex >= 0
+                ? serviceSelect.options[serviceSelect.selectedIndex].text
+                : 'Not specified';
 
-const WHATSAPP_NUMBER = "8129911207";
+            const message = document.getElementById('message')?.value.trim() || 'No message provided';
 
-const supportForm = document.getElementById("support-form");
-
-if (supportForm) {
-    supportForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        // Get form values
-        const name = document.getElementById("name").value.trim();
-        const phone = document.getElementById("phone").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const serviceElement = document.getElementById("service-type");
-        const service = serviceElement.options[serviceElement.selectedIndex].text;
-        const message = document.getElementById("message").value.trim();
-
-        // Create WhatsApp message
-        const whatsappMessage =
+            const whatsappMessage =
 `*NEW SUPPORT REQUEST - MK TECHFORGE*
 
 *Customer Name:* ${name}
-*Phone:* ${phone}
-*Email:* ${email}
+*Customer Phone:* ${phone}
+*Customer Email:* ${email}
 *Service Required:* ${service}
 
 *Issue / Requirement:*
-${message}
+${message}`;
 
-Please contact me regarding this request.`;
+            const cleanPhone = WHATSAPP_NUMBER.replace(/\D/g, '');
+            const whatsappURL = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(whatsappMessage)}`;
 
-        // Encode message for WhatsApp URL
-        const encodedMessage = encodeURIComponent(whatsappMessage);
+            // Provide visual feedback
+            showToast("Redirecting to WhatsApp support...");
 
-        // WhatsApp URL
-        const whatsappURL =
-            `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-
-        // Open WhatsApp
-        window.open(whatsappURL, "_blank");
-
-        // Optional success notification
-        const toast = document.getElementById("toast-notification");
-
-        if (toast) {
-            toast.textContent = "Opening WhatsApp...";
-            toast.classList.add("show");
-
-            setTimeout(() => {
-                toast.classList.remove("show");
-            }, 3000);
-        }
-
-        // Clear form
-        supportForm.reset();
-    });
-}
+            // Open WhatsApp in a new tab / window (fallback to location.href if blocked)
+            const newWindow = window.open(whatsappURL, '_blank');
+            if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                window.location.href = whatsappURL;
+            }
+        });
+    }
+});
