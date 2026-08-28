@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const message = document.getElementById('message')?.value.trim() || 'Support requested';
 
             const whatsappMessage =
-`*NEW SUPPORT REQUEST - MK TECHFORGE*
+                `*NEW SUPPORT REQUEST - MK TECHFORGE*
 
 *Customer Name:* ${name}
 *Customer Phone:* ${phone}
