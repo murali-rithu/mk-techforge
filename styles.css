@@ -1981,3 +1981,237 @@ footer,
         animation: none;
     }
 }
+/* =========================================================
+   MK TECHFORGE - MODERN SCROLL ANIMATIONS
+   ========================================================= */
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* -----------------------------------------
+   Scroll Reveal
+   ----------------------------------------- */
+
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+}
+
+.scroll-reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* -----------------------------------------
+   Slide from Left
+   ----------------------------------------- */
+
+.slide-left {
+    opacity: 0;
+    transform: translateX(-80px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+}
+
+.slide-left.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* -----------------------------------------
+   Slide from Right
+   ----------------------------------------- */
+
+.slide-right {
+    opacity: 0;
+    transform: translateX(80px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+}
+
+.slide-right.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* -----------------------------------------
+   Zoom In
+   ----------------------------------------- */
+
+.zoom-in {
+    opacity: 0;
+    transform: scale(0.85);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+}
+
+.zoom-in.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+/* -----------------------------------------
+   Stagger animation for cards
+   ----------------------------------------- */
+
+.animate-card {
+    opacity: 0;
+    transform: translateY(50px);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+.animate-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.animate-card:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.animate-card:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.animate-card:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.animate-card:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+.animate-card:nth-child(5) {
+    transition-delay: 0.5s;
+}
+
+.animate-card:nth-child(6) {
+    transition-delay: 0.6s;
+}
+
+
+/* -----------------------------------------
+   Service Card Hover
+   ----------------------------------------- */
+
+.service-card {
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+
+/* -----------------------------------------
+   Image movement
+   ----------------------------------------- */
+
+.hero-image img,
+.about-image img,
+.founder-image img {
+    transition:
+        transform 0.6s ease;
+}
+
+.hero-image:hover img,
+.about-image:hover img,
+.founder-image:hover img {
+    transform: scale(1.04);
+}
+
+
+/* -----------------------------------------
+   Floating technical effect
+   ----------------------------------------- */
+
+.floating-element {
+    animation: floatingTech 5s ease-in-out infinite;
+}
+
+@keyframes floatingTech {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+
+/* -----------------------------------------
+   Section transition
+   ----------------------------------------- */
+
+.animated-section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.animated-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* -----------------------------------------
+   Statistics counter
+   ----------------------------------------- */
+
+.stat-number {
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* -----------------------------------------
+   Respect reduced-motion settings
+   ----------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .scroll-reveal,
+    .slide-left,
+    .slide-right,
+    .zoom-in,
+    .animate-card,
+    .animated-section {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .floating-element {
+        animation: none;
+    }
+
+}
