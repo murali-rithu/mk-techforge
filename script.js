@@ -1,5 +1,5 @@
 /* =========================================================
-   MK TECHFORGE — INTERACTIVE APPLICATION SCRIPT
+   Ralix — INTERACTIVE APPLICATION SCRIPT
    ========================================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (q.includes('hour') || q.includes('time') || q.includes('open')) {
             return "Our emergency IT helpdesk operates 24/7/365. Standard office consulting is available Mon-Fri 8am-6pm.";
         } else if (q.includes('hello') || q.includes('hi') || q.includes('hey')) {
-            return "Hello! How can MK TechForge assist your business or system today?";
+            return "Hello! How can Ralix assist your business or system today?";
         } else {
             return "Thank you for reaching out. A tech forge engineer has received your note. For immediate urgent support, click our WhatsApp link below!";
         }
@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const message = document.getElementById('message')?.value.trim() || 'Support requested';
 
             const whatsappMessage =
-                `*NEW SUPPORT REQUEST - MK TECHFORGE*
+                `*NEW SUPPORT REQUEST - Ralix*
 
 *Customer Name:* ${name}
 *Customer Phone:* ${phone}
