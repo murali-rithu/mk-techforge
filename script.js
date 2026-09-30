@@ -265,3 +265,156 @@ ${message}`;
         });
     }
 });
+/* =========================================================
+   MK TECHFORGE - SCROLL ANIMATION SYSTEM
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* -----------------------------------------
+       Scroll Reveal
+       ----------------------------------------- */
+
+    const animatedElements = document.querySelectorAll(
+        ".scroll-reveal, .slide-left, .slide-right, .zoom-in, .animate-card, .animated-section"
+    );
+
+    const observer = new IntersectionObserver(
+        function (entries, observer) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("show");
+                    entry.target.classList.add("visible");
+
+                    observer.unobserve(entry.target);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+    animatedElements.forEach(function (element) {
+        observer.observe(element);
+    });
+
+
+    /* -----------------------------------------
+       Smooth navigation
+       ----------------------------------------- */
+
+    const navigationLinks = document.querySelectorAll(
+        'a[href^="#"]'
+    );
+
+    navigationLinks.forEach(function (link) {
+
+        link.addEventListener("click", function (event) {
+
+            const targetId = this.getAttribute("href");
+
+            if (!targetId || targetId === "#") {
+                return;
+            }
+
+            const target = document.querySelector(targetId);
+
+            if (target) {
+
+                event.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+
+        });
+
+    });
+
+
+    /* -----------------------------------------
+       Statistics Counter
+       ----------------------------------------- */
+
+    const counters = document.querySelectorAll(
+        ".stat-number[data-target]"
+    );
+
+    const counterObserver = new IntersectionObserver(
+        function (entries, observer) {
+
+            entries.forEach(function (entry) {
+
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+                const counter = entry.target;
+
+                const target = parseInt(
+                    counter.getAttribute("data-target"),
+                    10
+                );
+
+                let current = 0;
+
+                const duration = 1800;
+
+                const startTime = performance.now();
+
+                function updateCounter(currentTime) {
+
+                    const elapsed = currentTime - startTime;
+
+                    const progress = Math.min(
+                        elapsed / duration,
+                        1
+                    );
+
+                    current = Math.floor(
+                        progress * target
+                    );
+
+                    counter.textContent = current;
+
+                    if (progress < 1) {
+
+                        requestAnimationFrame(
+                            updateCounter
+                        );
+
+                    } else {
+
+                        counter.textContent = target;
+
+                    }
+
+                }
+
+                requestAnimationFrame(updateCounter);
+
+                observer.unobserve(counter);
+
+            });
+
+        },
+        {
+            threshold: 0.7
+        }
+    );
+
+
+    counters.forEach(function (counter) {
+        counterObserver.observe(counter);
+    });
+
+});
