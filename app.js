@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Ralix - Live WhatsApp Integration (Target: +91 8129911207)
+   MK TechForge - Live WhatsApp Integration (Target: +91 8129911207)
    ========================================================================== */
 
 const WHATSAPP_NUMBER = '918129911207';
@@ -95,7 +95,7 @@ function initDiagnosticWidget() {
     dispatchBtn.addEventListener('click', (e) => {
       e.preventDefault();
       const currentIssueTitle = titleEl.textContent || "Computer Tech Issue";
-      const waMsg = `Hi Ralix Support,\nI need help resolving this issue on my computer: *${currentIssueTitle}*.`;
+      const waMsg = `Hi MK Techforge Support,\nI need help resolving this issue on my computer: *${currentIssueTitle}*.`;
       openWhatsApp(waMsg);
     });
   }
@@ -148,7 +148,7 @@ function initPricingCalculator() {
       const price = totalPriceEl.textContent;
       const plan = planTypeBadge.textContent;
 
-      const waMsg = `Hi Ralix Support,\nI would like to get support for:\n- Computers: ${pcs}\n- Printers/Devices: ${printers}\n- Plan: ${plan} (${price}/mo)`;
+      const waMsg = `Hi MK TechForge Support,\nI would like to get support for:\n- Computers: ${pcs}\n- Printers/Devices: ${printers}\n- Plan: ${plan} (${price}/mo)`;
       openWhatsApp(waMsg);
     });
   }
@@ -231,7 +231,7 @@ function initTicketModal() {
       const category = document.getElementById('ticketSeverity').value;
       const desc = document.getElementById('ticketDesc').value.trim();
 
-      const ticketId = 'Ralix-HELP-' + Math.floor(100000 + Math.random() * 900000);
+      const ticketId = 'MK TechForge-HELP-' + Math.floor(100000 + Math.random() * 900000);
 
       const waMessage = `*NEW REMOTE SUPPORT REQUEST*\n` +
                         `------------------------------\n` +
@@ -269,7 +269,7 @@ function initContactFormWhatsApp() {
                       `*Device:* ${deviceType}\n` +
                       `*Message:* ${message}\n` +
                       `------------------------------\n` +
-                      `Sent via Ralix Website`;
+                      `Sent via MK TechForge Website`;
 
     openWhatsApp(waMessage);
     contactForm.reset();
@@ -303,7 +303,7 @@ function initLiveChatBot() {
 
   if (chipWhatsapp) {
     chipWhatsapp.addEventListener('click', () => {
-      openWhatsApp("Hello Ralix Helpdesk, I need assistance with my computer/printer.");
+      openWhatsApp("Hello MK TechForge Helpdesk, I need assistance with my computer/printer.");
     });
   }
 
@@ -317,18 +317,18 @@ function initLiveChatBot() {
 
   if (chipCall) {
     chipCall.addEventListener('click', () => {
-      appendMessage("Calling Ralix Support Desk: +91 8129911207", 'bot');
+      appendMessage("Calling MK TechForge Support Desk: +91 8129911207", 'bot');
     });
   }
 
   const botResponses = {
-    hello: "Hello! Welcome to Ralix Helpdesk. Do you need help fixing a computer, laptop, printer, or software application today?",
+    hello: "Hello! Welcome to MK TechForge Helpdesk. Do you need help fixing a computer, laptop, printer, or software application today?",
     whatsapp: `Opening WhatsApp chat with our technician (+91 8129911207)...`,
     printer: "For printer issues (offline, driver error, paper jam), make sure your printer is connected to the same Wi-Fi network as your computer or restart the Print Spooler service.",
     slow: "For slow computers or freezing applications, we recommend running disk cleanup, closing heavy background apps, or scheduling a quick 10-minute remote screen assist.",
     bsod: "If you are getting a Blue Screen (BSOD) or startup error, our technician can guide you through Safe Mode recovery or repair corrupt system files.",
-    human: `Connecting you directly with an Ralix Helpdesk Technician on WhatsApp (+91 8129911207)...`,
-    default: `Thank you for reaching out to Ralix Helpdesk! For instant assistance, chat with us directly on WhatsApp (+91 8129911207).`
+    human: `Connecting you directly with an MK TechForge Helpdesk Technician on WhatsApp (+91 8129911207)...`,
+    default: `Thank you for reaching out to MK TechForge Helpdesk! For instant assistance, chat with us directly on WhatsApp (+91 8129911207).`
   };
 
   if (chatForm) {
@@ -347,7 +347,7 @@ function initLiveChatBot() {
         else if (lower.includes('whatsapp') || lower.includes('wa') || lower.includes('phone') || lower.includes('mobile')) {
           reply = botResponses.whatsapp;
           setTimeout(() => {
-            openWhatsApp("Hi  Ralix Support, I need help: " + msgText);
+            openWhatsApp("Hi  MK TechForge Support, I need help: " + msgText);
           }, 800);
         }
         else if (lower.includes('printer') || lower.includes('scan') || lower.includes('print')) reply = botResponses.printer;
